@@ -67,7 +67,7 @@ export const useAuthStore = defineStore("auth", {
           repeatpassword: password,
         })
         .then((res) => {
-          console.log("RESPUESTA", res);
+          // console.log("RESPUESTA", res);
           //auth token
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.token;

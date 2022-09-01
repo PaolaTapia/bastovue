@@ -8,7 +8,14 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: "",
+        name: "Index",
         component: () => import("src/pages/Index.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "animal/:_id?",
+        name: "FormAnimal",
+        component: () => import("src/components/FormAnimal.vue"),
         meta: { requiresAuth: true },
       },
       // {
@@ -21,17 +28,17 @@ const routes: RouteRecordRaw[] = [
   {
     name: "SignIn",
     path: "/login",
-    component: () => import("pages/Login.vue"),
+    component: () => import("pages/user/Login.vue"),
   },
   {
     name: "SignUp",
     path: "/register",
-    component: () => import("src/pages/Register.vue"),
+    component: () => import("src/pages/user/Register.vue"),
   },
   {
     name: "Recover",
     path: "/recover",
-    component: () => import("src/pages/Recover.vue"),
+    component: () => import("src/pages/user/Recover.vue"),
   },
 
   // Always leave this as last one,

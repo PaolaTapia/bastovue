@@ -25,9 +25,9 @@
             </q-item-section>
           </q-item> -->
 
-          <q-item active clickable v-ripple>
+          <q-item active clickable v-ripple :to="{ name: 'Index' }">
             <q-item-section avatar>
-              <q-icon name="star" />
+              <q-icon name="login" />
             </q-item-section>
 
             <q-item-section>
@@ -55,7 +55,7 @@
           <q-avatar size="56px" class="q-mb-sm">
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
           </q-avatar>
-          <div class="text-weight-bold">{{ userInfo.email }} </div>
+          <div class="text-weight-bold">{{  userInfo.email  }} </div>
         </div>
       </q-img>
     </q-drawer>

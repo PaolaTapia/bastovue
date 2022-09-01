@@ -28,16 +28,16 @@
 
         <div class="row">
           <div class="col-12">
-            <router-link to="recover" class="float-right">Forgot password?</router-link>
+            <!-- <router-link to="recover" class="float-right">Forgot password?</router-link> -->
             <router-link to="register" class="float-left">Sign Up</router-link>
           </div>
         </div>
 
-        <div class="row q-pt-md">
+        <!-- <div class="row q-pt-md">
           <div class="col-12">
             <q-checkbox class="float-left" v-model="userInfo.remember" label="Remember Me" />
           </div>
-        </div>
+        </div> -->
 
         <div>
           <q-btn label="Login" type="submit" color="primary" class="q-mt-sm full-width" />
@@ -52,7 +52,7 @@
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "../stores/auth/auth-store";
+import { useAuthStore } from "../../stores/auth/auth-store";
 
 const authStore = useAuthStore();
 
@@ -63,7 +63,7 @@ export default defineComponent({
       email: '',
       password: '',
       accept: false,
-      remember: false,
+      // remember: false,
       errorInAccept: false,
     });
 
@@ -115,7 +115,7 @@ export default defineComponent({
           email: '',
           password: '',
           accept: false,
-          remember: false,
+          // remember: false,
           errorInAccept: false,
         }
       },

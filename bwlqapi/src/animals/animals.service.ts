@@ -22,11 +22,10 @@ export class AnimalsService {
     createAnimalDto.typeDevice = createAnimalDto.typeDevice.toLocaleUpperCase();
     try {
       const createdAnimal = await this.animalModel.create(createAnimalDto);
+
       return createdAnimal;
     } catch (error) {
-      if (error.code === 11000) {
-        this.handleExceptions(error);
-      }
+      this.handleExceptions(error);
     }
   }
 
@@ -41,7 +40,7 @@ export class AnimalsService {
           createdAt: -1, //order by createdAt desc
         })
         // .select('-__v'); // '-__v' select only the fields that we want to show
-        .select({ __v: 0, _id: 0 }); // '-__v' select only the fields that we want to show
+        .select({ __v: 0 }); // '-__v' select only the fields that we want to show
       const data = {
         animals: listAnimals,
       };
@@ -93,15 +92,17 @@ export class AnimalsService {
   async update(id: ObjectId, updateAnimalDto: UpdateAnimalDto) {
     let animal: Animal;
     try {
+      if (updateAnimalDto.typeAnimal)
+        updateAnimalDto.typeAnimal =
+          updateAnimalDto.typeAnimal.toLocaleUpperCase();
+      if (updateAnimalDto.typeDevice)
+        updateAnimalDto.typeDevice =
+          updateAnimalDto.typeDevice.toLocaleUpperCase();
+
       if (isValidObjectId(id))
         animal = await this.animalModel.findByIdAndUpdate(id, updateAnimalDto, {
           new: true,
         });
-
-      if (updateAnimalDto.typeAnimal)
-        animal.typeAnimal = updateAnimalDto.typeAnimal.toLocaleUpperCase();
-      if (updateAnimalDto.typeDevice)
-        animal.typeDevice = updateAnimalDto.typeDevice.toLocaleUpperCase();
 
       return animal;
     } catch (error) {
@@ -115,18 +116,18 @@ export class AnimalsService {
       if (deletedCount === 0)
         throw new NotFoundException(`Animal with id ${id} not found`);
       return 'Animal deleted';
-      // if (isValidObjectId(id)) {
-      // let animal: Animal;
-      //   animal = await this.animalModel.findByIdAndUpdate(
-      //     id,
-      //     { is_active: false },
-      //     {
-      //       new: true,
-      //     },
-      //   );
+    } catch (error) {
+      this.handleExceptions(error);
+    }
+  }
 
-      //   return animal;
-      // }
+  async removeMany(search: ObjectId[]) {
+    try {
+      const { deletedCount } = await this.animalModel.deleteMany({ search });
+
+      if (deletedCount === 0)
+        throw new NotFoundException(`Animal with id ${search} not found`);
+      return 'Animal deleted';
     } catch (error) {
       this.handleExceptions(error);
     }

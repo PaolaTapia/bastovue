@@ -35,8 +35,8 @@ export class AnimalsController {
   }
 
   @Get(':search')
-  findOne(@Param('search') id: string) {
-    return this.animalsService.findOne(id); // +id: lo conviertiría a number si en service recibe id como number
+  findOne(@Param('search') search: string) {
+    return this.animalsService.findOne(search); // +id: lo conviertiría a number si en service recibe id como number
   }
 
   @Patch(':id')
@@ -52,5 +52,11 @@ export class AnimalsController {
   @HttpCode(HttpStatus.OK)
   remove(@Param('id', ParseMongoIdPipe) id: ObjectId) {
     return this.animalsService.remove(id);
+  }
+
+  @Delete()
+  @HttpCode(HttpStatus.OK)
+  removeMany(@Body() search: ObjectId[]) {
+    return this.animalsService.removeMany(search);
   }
 }

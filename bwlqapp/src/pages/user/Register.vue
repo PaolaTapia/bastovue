@@ -38,7 +38,7 @@
 
         <div class="row">
           <div class="col-12">
-            <router-link to="recover" class="float-right">Forgot password?</router-link>
+            <!-- <router-link to="recover" class="float-right">Forgot password?</router-link> -->
             <router-link to="login" class="float-left">Login</router-link>
           </div>
         </div>
@@ -63,7 +63,7 @@
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "../stores/auth/auth-store";
+import { useAuthStore } from "../../stores/auth/auth-store";
 
 const authStore = useAuthStore();
 

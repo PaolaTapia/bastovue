@@ -14,7 +14,7 @@ export class Animal extends Document {
 
   @Prop({
     default: 'TORO',
-    enum: ['VACA', 'TORO', 'NOVILLO'],
+    enum: ['VAQUILLONA', 'TORO', 'NOVILLO'],
   })
   typeAnimal: string;
 
@@ -27,7 +27,7 @@ export class Animal extends Document {
   @Prop({ enum: ['CARAVANA', 'COLLAR'], default: 'COLLAR' })
   typeDevice: string;
 
-  @Prop({ default: '123456abc' })
+  @Prop({ default: '12345abc' })
   numberDevice: string;
 
   @Prop({ default: true })
